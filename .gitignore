@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# Trained model weights
+*.pt
+*.onnx
+
+# Generated output
+outputs/
+runs/
+
+# Large/local data
+data/
+videos/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
