@@ -1,116 +1,138 @@
-# RoadVision
+# RoadVision – Real-Time Object Detection System
 
-## Contributors (username and real name)
-- **georgimark** (Mark Georgi)  
-- **PatRobin02** (Patrick Robin)  
-- **Alexandraivezaj** (Alexandra Ivezaj)  
-- **wmkumpula** (William Kumpula)  
-- **Rita** (Rita Mansoor)
+RoadVision is a computer vision application designed to detect and track roadway objects from live camera feeds and prerecorded video using YOLOv11.
 
-RoadVision is a computer vision system designed for real-time and prerecorded object detection on roadways using **YOLOv11**. The system includes a graphical user interface for live inference control, tools for batch video processing, and a complete training pipeline.
+The system combines real-time object detection, video processing, model training utilities, and a Python-based graphical user interface. It was developed as a collaborative Computer Science capstone project.
 
----
+## Demo
 
-## Directory Structure
+RoadVision can process real-world driving footage and identify roadway objects in real time.
+
+[▶ View RoadVision Demo](videos/test_driving_1_trimmed.mp4)
+
+## Features
+
+- Real-time roadway object detection
+- Detection from live camera feeds
+- Prerecorded video processing
+- YOLOv11-based object detection
+- Adjustable detection confidence threshold
+- Configurable inference image size
+- Graphical control panel for running inference
+- Video recording of annotated detection output
+- Dataset verification utilities
+- Model training pipeline
+- Camera detection utility
+
+## Technologies
+
+- Python
+- YOLOv11
+- OpenCV
+- PyTorch
+- Ultralytics YOLO
+- Computer Vision
+- ONNX
+
+## Project Structure
 
 ```text
-CSI4999-Project/
+roadvision-object-detection/
 │
-├── runs/                      # Training artifacts
-│   └── detect/
-│       └── bdd11s_base/
-│           └── best.onnx      # Trained model weights
-├── live_feed_test/
-│   └── live_feed.py               # Camera backend logic
-│   └──live_predict.py            # Standalone real-time inference script
-├── src/
-│   └── predict_video.py           # Batch video processing script
-├── tools/
-│   └── train_bdd.py               # YOLOv11 training pipeline
-│   └──verify_dataset.py          # Dataset consistency checker
-│   └── find_camera_id.py          # Utility to scan for available camera indices
 ├── UI/
-│   └── control_panel.py       # Main Graphical User Interface (Full integrated System)
-├── videos/                    # Output directory for GUI recordings
-├── outputs/                   # Output directory for batch processed videos
-├── README.md
-└── requirements.txt           # Dependencies file
+│   └── control_panel.py
+│
+├── configs/
+│
+├── data/
+│
+├── live_feed_test/
+│   ├── live_feed.py
+│   └── live_predict.py
+│
+├── models/
+│
+├── src/
+│   └── predict_video.py
+│
+├── tools/
+│   ├── find_camera_id.py
+│   ├── train_bdd.py
+│   └── verify_dataset.py
+│
+├── videos/
+│   └── test_driving_1_trimmed.mp4
+│
+├── config.json
+├── requirements.txt
+└── README.md
 ```
 
----
+## Getting Started
 
-## Setup & Installation
+### 1. Install Dependencies
 
-### Install Requirements
-Ensure you have Python installed, then install the necessary dependencies:
+Make sure Python is installed, then run:
 
 ```bash
 pip install -r requirements.txt
 ```
-Note: To run on gpu consult with correct installation guide on pytorch.
 
-For an RTX 5090 run:
-```bash
-pip3 install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu128
-```
+### 2. Launch RoadVision
 
----
-
-## Usage Instructions
-
-### 1. Launch the Application
-Run the Control Panel script from the project root:
+From the project root:
 
 ```bash
 python UI/control_panel.py
 ```
 
-### 2. Load the Model
-Once the **Control Panel** window opens:
+### 3. Load a Model
 
-- Locate the **Model** section.  
-- Click **Load .pt/.onnx**.  
-- Navigate to the weights file (e.g., `runs/detect/bdd11s_base/best.onnx`) and select it.
+From the RoadVision control panel:
 
----
+1. Locate the **Model** section.
+2. Click **Load .pt/.onnx**.
+3. Select a compatible trained model.
 
-### 3. Select Input Source
+Model weights are not included in this repository.
 
-#### For Live Camera:
-- Enter the camera index (usually `0` or `1`) in the text box.
-- Click **Set Camera Index**.
+### 4. Select an Input Source
 
-**Tip:** If you don't know your camera index, run:
+For a live camera, enter the appropriate camera index (commonly `0` or `1`).
+
+To identify available cameras, run:
 
 ```bash
 python tools/find_camera_id.py
 ```
 
-#### For Video File:
-- Click **Select Video File...** and choose a supported video file (`.mp4`, `.mov`, `.avi`, `.mkv`).
+For prerecorded footage, select a supported video file such as `.mp4`, `.mov`, `.avi`, or `.mkv`.
 
----
+### 5. Run Object Detection
 
-### 4. Start Inference
-Click the green **START Video** button to begin the feed and object detection.
+Click **START Video** to begin inference.
 
----
+The interface allows the user to adjust settings such as:
 
-### 5. Adjust Settings
-- **Confidence:** Use the slider to adjust the detection confidence threshold (0–100%) in real time.  
-- **Image Size:** Adjust inference image size (default `1280`) in the **Img Size** box.  
+- Detection confidence
+- Inference image size
+- Camera/video input
+- Video recording
 
----
+Recorded detection footage can be saved to the `videos/` directory.
 
-### 6. Recording
-To save a video of the annotated feed:
+## Team Project
 
-- Click **REC Start** to begin recording.  
-- Click **REC Stop** to finish.
+RoadVision was developed collaboratively as a Computer Science capstone project.
 
-**Note:** Recorded videos will be saved in the `videos/` directory with a timestamped filename (e.g., `recording_20231025_120000.mp4`).
+### Contributors
 
----
+- Alexandra Ivezaj — `Alexandraivezaj`
+- Mark Georgi — `georgimark`
+- Patrick Robin — `PatRobin02`
+- William Kumpula — `wmkumpula`
+
+The project provided hands-on experience with computer vision, object detection, model inference, Python development, and collaborative software development.
 
 ### 7. Stop Application
 Click **STOP Video** to end the feed.
