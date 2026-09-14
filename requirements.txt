@@ -1,0 +1,9 @@
+ultralytics
+opencv-python
+pycocotools
+tqdm
+ruamel.yaml
+pandas
+matplotlib
+torch
+pillow
